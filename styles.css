@@ -1925,8 +1925,8 @@ a {
     }
     
     .hero {
-        min-height: 600px;
-        height: calc(100vh - 60px);
+        min-height: 400px;
+        height: 60vh;
     }
     
     .hero-content {
@@ -2137,6 +2137,30 @@ a {
         font-size: 0.875rem;
         line-height: 1.5;
     }
+    
+    /* Partner logos on mobile - all on one line */
+    .partner-logos-section {
+        padding: 1.5rem 0 !important;
+    }
+    
+    .partner-logos-container {
+        flex-wrap: nowrap !important;
+        gap: 5rem !important;
+        padding: 0 1rem !important;
+    }
+    
+    .partner-logos-container > div {
+        flex: 0 0 auto !important;
+    }
+    
+    .partner-logos-container img {
+        height: 60px !important;
+        width: auto !important;
+    }
+    
+    .partner-logos-container > div:last-child {
+        gap: 0.75rem !important;
+    }
 }
 
 /* Small Mobile - 320px to 480px */
@@ -2171,8 +2195,8 @@ a {
     }
     
     .hero {
-        min-height: 550px;
-        height: calc(100vh - 40px);
+        min-height: 350px;
+        height: 55vh;
     }
     
     .hero-content {
@@ -2396,6 +2420,16 @@ a {
         line-height: 1.65;
         padding: 0 0.5rem;
     }
+    
+    /* Partner logos - smaller for tight mobile screens */
+    .partner-logos-container {
+        gap: 3rem !important;
+        padding: 0 0.75rem !important;
+    }
+    
+    .partner-logos-container img {
+        height: 50px !important;
+    }
 }
 
 /* Extra Small Mobile - below 375px */
@@ -2461,6 +2495,16 @@ a {
     .cta-button {
         padding: 0.75rem 1.5rem;
         font-size: 0.875rem;
+    }
+    
+    /* Partner logos - extra small screens */
+    .partner-logos-container {
+        gap: 2rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .partner-logos-container img {
+        height: 45px !important;
     }
 }
 
