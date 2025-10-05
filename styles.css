@@ -187,7 +187,10 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-navy) 50%, var(--secondary-navy) 100%);
+    background: 
+        linear-gradient(135deg, #0a1628 0%, #1a2940 25%, #2d3e56 50%, #1a2940 75%, #0a1628 100%),
+        linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.03) 30%, rgba(212, 175, 55, 0.03) 70%, transparent 70%);
+    background-size: 100% 100%, 60px 60px;
     overflow: hidden;
 }
 
@@ -199,9 +202,34 @@ a {
     bottom: 0;
     left: 0;
     background-image: 
-        radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+        radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 70%, rgba(212, 175, 55, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 80px,
+            rgba(212, 175, 55, 0.02) 80px,
+            rgba(212, 175, 55, 0.02) 81px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 80px,
+            rgba(212, 175, 55, 0.02) 80px,
+            rgba(212, 175, 55, 0.02) 81px
+        );
     pointer-events: none;
+    animation: heroShimmer 20s ease-in-out infinite;
+}
+
+@keyframes heroShimmer {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
 }
 
 .hero-overlay {
@@ -210,7 +238,9 @@ a {
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(10, 22, 40, 0.3);
+    background: 
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(10, 22, 40, 0.4) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -276,91 +306,233 @@ a {
     letter-spacing: 0.02em;
 }
 
+/* Premium Primary CTA Styling */
 .cta-button.primary {
+    --g1: #d4af37;
+    --g2: #f1dc8b;
+    --g3: #b9880e;
+    --shine-pos: -150%;
     position: relative;
-    background: linear-gradient(135deg, #d4af37 0%, #e4c766 40%, #c39518 100%);
-    background-size: 220% 220%;
     color: var(--primary-dark);
-    box-shadow: 0 6px 24px -4px rgba(212, 175, 55, 0.45), 0 2px 4px rgba(0,0,0,0.25);
-    border: 1px solid rgba(255,255,255,0.15);
+    background: linear-gradient(135deg, var(--g1) 0%, var(--g2) 45%, var(--g3) 100%);
+    background-size: 180% 180%;
+    border: 1px solid rgba(255,255,255,0.2);
     border-radius: 14px;
+    padding: 1.05rem 2.85rem;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    box-shadow:
+        0 2px 3px rgba(0,0,0,0.25),
+        0 6px 18px -4px rgba(212,175,55,0.55),
+        0 0 0 1px rgba(255,255,255,0.12) inset,
+        0 0 0 2px rgba(212,175,55,0.25) inset;
     overflow: hidden;
     isolation: isolate;
-    will-change: transform, box-shadow, background-position;
 }
 
+/* Hero Button - Outlined Sophisticated Style */
+.hero .cta-button.primary {
+    background: transparent;
+    background-size: 200% 200%;
+    color: var(--accent-gold);
+    border: 2px solid var(--accent-gold);
+    border-radius: 12px;
+    padding: 1.1rem 3rem;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    position: relative;
+    box-shadow:
+        0 0 20px rgba(212, 175, 55, 0.2),
+        0 0 40px rgba(212, 175, 55, 0.1),
+        inset 0 0 0 1px rgba(212, 175, 55, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Inner luminous film */
 .cta-button.primary::before {
     content: '';
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(160deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 45%),
-        linear-gradient(340deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 55%);
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%),
+        radial-gradient(circle at 70% 65%, rgba(255,255,255,0.35), rgba(255,255,255,0) 60%),
+        linear-gradient(160deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 55%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.16) 0 2px, rgba(255,255,255,0) 2px 5px);
     mix-blend-mode: screen;
     opacity: 0.85;
+    transition: opacity var(--transition-medium), transform 0.6s ease;
     pointer-events: none;
-    transition: opacity var(--transition-medium);
 }
 
+/* Hero Button - Subtle gradient background on hover fill */
+.hero .cta-button.primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0) 0%, 
+        rgba(212, 175, 55, 0.08) 50%, 
+        rgba(212, 175, 55, 0) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    border-radius: 10px;
+}
+
+/* Traveling sheen stripe */
 .cta-button.primary::after {
     content: '';
     position: absolute;
-    top: 0; right: -60%;
-    width: 55%;
+    top: 0;
+    left: 0;
+    width: 40%;
     height: 100%;
-    background: linear-gradient(115deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 45%, rgba(255,255,255,0) 80%);
-    transform: skewX(-25deg) translateX(0);
+    background: linear-gradient(115deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 48%, rgba(255,255,255,0) 75%);
+    transform: translateX(var(--shine-pos)) skewX(-18deg);
+    filter: blur(1px);
     opacity: 0;
-    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    transition: transform 1s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease;
     pointer-events: none;
 }
 
-@keyframes goldSheen {
+/* Hero Button - Shimmer effect */
+.hero .cta-button.primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(212, 175, 55, 0.3) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+@keyframes btnGoldFlow {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Gentle breathing shadow (separate from transform to avoid conflict on hover) */
-@keyframes subtleGlow {
-    0%, 100% { box-shadow: 0 6px 24px -4px rgba(212,175,55,0.45), 0 2px 4px rgba(0,0,0,0.25); }
-    50% { box-shadow: 0 8px 32px -4px rgba(212,175,55,0.55), 0 4px 10px rgba(0,0,0,0.25); }
+@keyframes btnSubtlePulse {
+    0%,100% { box-shadow: 0 2px 3px rgba(0,0,0,0.25), 0 6px 18px -4px rgba(212,175,55,0.55), 0 0 0 1px rgba(255,255,255,0.12) inset, 0 0 0 2px rgba(212,175,55,0.25) inset; }
+    50% { box-shadow: 0 4px 6px rgba(0,0,0,0.28), 0 10px 26px -6px rgba(212,175,55,0.65), 0 0 0 1px rgba(255,255,255,0.18) inset, 0 0 0 2px rgba(212,175,55,0.3) inset; }
 }
 
-/* Apply continuous luxury sheen only after initial entrance */
+@keyframes heroBtnGlow {
+    0%, 100% { 
+        box-shadow:
+            0 0 20px rgba(212, 175, 55, 0.2),
+            0 0 40px rgba(212, 175, 55, 0.1),
+            inset 0 0 0 1px rgba(212, 175, 55, 0.3);
+    }
+    50% { 
+        box-shadow:
+            0 0 30px rgba(212, 175, 55, 0.3),
+            0 0 60px rgba(212, 175, 55, 0.15),
+            inset 0 0 0 1px rgba(212, 175, 55, 0.5);
+    }
+}
+
 .hero .cta-button.primary {
-    animation: scaleIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards, goldSheen 10s linear 2s infinite, subtleGlow 6s ease-in-out 2s infinite;
+    opacity: 0;
+    animation: scaleIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.85s forwards, heroBtnGlow 4s ease-in-out 2s infinite;
 }
 
 .cta-button.primary:hover {
-    background-position: 85% 40%;
-    transform: translateY(-3px) scale(1.015);
-    box-shadow: 0 10px 34px -6px rgba(212,175,55,0.55), 0 4px 12px rgba(0,0,0,0.3);
+    transform: translateY(-4px) scale(1.02);
+    background-position: 70% 50%;
+    box-shadow:
+        0 4px 6px rgba(0,0,0,0.3),
+        0 14px 34px -6px rgba(212,175,55,0.65),
+        0 0 0 1px rgba(255,255,255,0.18) inset,
+        0 0 0 2px rgba(212,175,55,0.35) inset;
+}
+
+.hero .cta-button.primary:hover {
+    transform: translateY(-3px) scale(1.03);
+    border-color: var(--accent-light-gold);
+    color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-light-gold) 50%, var(--accent-gold) 100%);
+    box-shadow:
+        0 0 30px rgba(212, 175, 55, 0.4),
+        0 0 60px rgba(212, 175, 55, 0.2),
+        0 8px 25px rgba(212, 175, 55, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.hero .cta-button.primary:hover::before {
+    opacity: 0.6;
+}
+
+.hero .cta-button.primary:hover::after {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
 }
 
 .cta-button.primary:hover::after {
-    transform: skewX(-25deg) translateX(-160%);
+    --shine-pos: 210%;
+    transform: translateX(210%) skewX(-18deg);
     opacity: 1;
 }
 
 .cta-button.primary:active {
-    transform: translateY(0) scale(0.985);
-    box-shadow: 0 4px 16px -2px rgba(212,175,55,0.4), 0 2px 6px rgba(0,0,0,0.25);
-    transition: transform 0.08s ease, box-shadow 0.12s ease;
+    transform: translateY(-1px) scale(0.985);
+    transition: transform 0.08s ease, box-shadow 0.15s ease;
+    box-shadow:
+        0 2px 4px rgba(0,0,0,0.35),
+        0 8px 20px -6px rgba(212,175,55,0.55),
+        0 0 0 1px rgba(255,255,255,0.15) inset,
+        0 0 0 2px rgba(212,175,55,0.3) inset;
+}
+
+.hero .cta-button.primary:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow:
+        0 0 15px rgba(212, 175, 55, 0.3),
+        0 0 30px rgba(212, 175, 55, 0.15),
+        inset 0 0 20px rgba(212, 175, 55, 0.1);
 }
 
 .cta-button.primary:focus-visible {
-    outline: 2px solid var(--accent-light-gold);
-    outline-offset: 4px;
+    outline: 2px solid #fff4ca;
+    outline-offset: 3px;
+    box-shadow:
+        0 0 0 3px rgba(255,255,255,0.15),
+        0 0 0 6px rgba(212,175,55,0.35),
+        0 14px 40px -8px rgba(212,175,55,0.6);
 }
 
-/* Reduced motion: keep enhancements static */
+.hero .cta-button.primary:focus-visible {
+    outline: 2px solid var(--accent-light-gold);
+    outline-offset: 4px;
+    box-shadow:
+        0 0 30px rgba(212, 175, 55, 0.4),
+        0 0 60px rgba(212, 175, 55, 0.2),
+        inset 0 0 0 1px rgba(212, 175, 55, 0.6);
+}
+
+/* Reduced motion friendly */
 @media (prefers-reduced-motion: reduce) {
-    .cta-button.primary {
-        animation: none !important;
-        background-size: 100% 100%;
-    }
+    .cta-button.primary { animation: none !important; background-position: 50% 50%; }
     .cta-button.primary::after { display: none; }
+}
+
+.hero .cta-button.primary {
+    opacity: 0;
+    animation: scaleIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+}
+
+.cta-button.primary:hover {
+    background: var(--accent-light-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(212, 175, 55, 0.4);
 }
 
 .cta-button.secondary {
